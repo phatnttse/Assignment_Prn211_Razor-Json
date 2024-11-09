@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@using Assignment_BusinessObjects;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Our Learning Platform</h1>
+    <img src="~/assets/images/banner.jpg" alt="Welcome Banner" class="img-fluid mt-3" />
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Available Courses</h2>
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success" role="alert">
+                @Model.SuccessMessage
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        }
+        @foreach (var course in Model.Courses ?? Enumerable.Empty<Course>())
+        {
+        <div class="col-md-4">
+            <form method="post">
+                <div class="card mb-4 shadow-sm border-light">
+                    <img src="@course.ImageUrl" class="card-img-top w-100" alt="@course.Title" style="object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@course.Title</h5>
+                        <p class="card-text">@course.Description</p>
+                        <p class="card-text"><small class="text-muted">Instructor: @course.Instructor</small></p>
+                        <p class="card-text"><small class="text-muted">Start Date: @course.StartDate.ToShortDateString()</small></p>
+                        <input type="hidden" asp-for="CourseId" value="@course.Id" />
+                        <button type="submit" class="btn btn-primary">Enroll</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        }
+
+    </div>
+</div>

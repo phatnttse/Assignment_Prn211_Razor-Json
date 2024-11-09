@@ -1,0 +1,74 @@
+﻿@page
+@model Assignment_RazorWeb.Pages.SignInModel
+@{
+    ViewData["Title"] = "Sign In ";
+}
+<div class="content" style="padding-top: 7rem;padding-bottom: 3rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="~/assets/images/Login-amico.svg" alt="Image" class="img-fluid" />
+            </div>
+            <div class="col-md-6 contents">
+                <div class="row justify-content-center">
+                   
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+                    <div class="col-md-9">
+                        <div class="mb-4">
+                            <h3>
+                                Sign In
+                                <strong class="primary-color">AssignmentPrn211</strong>
+                            </h3>
+                            <p class="my-3">
+                                Don't have an account?
+                                <a asp-page="/SignUp" class="primary-color" style="text-decoration: underline">Sign up now</a>
+                            </p>
+                        </div>
+                        <form method="post" asp-page-handler="SignIn">
+                            <div class="form-group mb-3">
+                                <label for="email" style="font-size: 14px">Email</label>
+                                <input type="email"
+                                       id="email"
+                                       asp-for="Email"
+                                       required
+                                       class="form-control"
+                                       placeholder="Enter your email"
+                                        />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password" style="font-size: 14px">Password</label>
+                                <input type="password"
+                                       id="password"
+                                       asp-for="Password"
+                                       required
+                                       class="form-control"
+                                       placeholder="Enter your password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="d-flex mb-3 align-items-center justify-content-end">
+                                <span class="ml-auto">
+                                    <a href="#" class="forgot-pass">Forgot Password?</a>
+                                </span>
+                            </div>
+
+                            <button type="submit" style="background-color:  #9B59B6" class="btn w-100 p-20 text-white">
+                               
+                                    Sign In
+                                                    
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

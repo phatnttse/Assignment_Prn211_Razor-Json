@@ -1,0 +1,63 @@
+﻿@page
+@model Assignment_RazorWeb.Pages.Courses.EditModel
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<h2>Edit Course</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Course.Id" />
+
+    <div class="form-group">
+        <label asp-for="Course.Title" class="control-label"></label>
+        <input asp-for="Course.Title" class="form-control" />
+        <span asp-validation-for="Course.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Course.Instructor" class="control-label"></label>
+        <input asp-for="Course.Instructor" class="form-control" />
+        <span asp-validation-for="Course.Instructor" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Course.StartDate" class="control-label"></label>
+        <input asp-for="Course.StartDate" class="form-control" type="date" />
+        <span asp-validation-for="Course.StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Course.EndDate" class="control-label"></label>
+        <input asp-for="Course.EndDate" class="form-control" type="date" />
+        <span asp-validation-for="Course.EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Course.Description" class="control-label"></label>
+        <textarea asp-for="Course.Description" class="form-control"></textarea>
+        <span asp-validation-for="Course.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="font-weight-bold">Current Image:</label><br />
+        @if (!string.IsNullOrEmpty(Model.Course.ImageUrl))
+        {
+            <img src="@Model.Course.ImageUrl" alt="Current Image" style="max-width: 200px; max-height: 150px;" />
+        }
+        <label class="font-weight-bold">Upload New Image (Optional)</label>
+        <input type="file" asp-for="ImageFile" class="form-control-file" />
+        <input type="hidden" asp-for="Course.ImageUrl" value="default-image-url.jpg" />
+    </div>
+
+    <div class="align-items-center d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary me-3">Edit</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

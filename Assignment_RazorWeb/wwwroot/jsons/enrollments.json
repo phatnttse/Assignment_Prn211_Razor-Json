@@ -1,0 +1,25 @@
+[
+  {
+    "UserId": "533ee5b3-97f9-430b-8830-aef2e61a5798",
+    "CourseId": "b3c55448-f014-497f-a2e5-95b0a91e9b63",
+    "EnrollmentDate": "2024-11-09T22:17:11.567744+07:00",
+    "Status": 0,
+    "User": null,
+    "Course": {
+      "ImageUrl": "http://localhost:5086/images/wallhaven-6de6wl.png",
+      "Title": "PRN221",
+      "Description": "PRN221 hay lamm",
+      "Instructor": "Thay Lam dep trai",
+      "StartDate": "2024-11-04T00:00:00",
+      "EndDate": "2024-11-30T00:00:00",
+      "IsActive": true,
+      "Enrollments": null,
+      "Id": "b3c55448-f014-497f-a2e5-95b0a91e9b63",
+      "UpdatedAt": "0001-01-01T00:00:00",
+      "CreatedAt": "0001-01-01T00:00:00"
+    },
+    "Id": "3ac3559d-affd-4291-a7e5-1550723723e5",
+    "UpdatedAt": "0001-01-01T00:00:00",
+    "CreatedAt": "0001-01-01T00:00:00"
+  }
+]

@@ -1,0 +1,37 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+bin/
+obj/
+# Tệp tạm thời
+*.tmp
+*.temp
+*.log
+# Các tệp nhị phân
+*.dll
+*.exe
+*.pdb
+*.idb
+*.ilk
+*.cache
+# Tệp cấu hình của người dùng
+*.dbmdl
+*.dbproj.schemaview
+*.dbproj.user
+# Tệp cấu hình của dự án
+*.jfm
+*.vspscc
+*.vssscc
+# Tệp ẩn
+Thumbs.db
+ehthumbs.db
+# Tệp backup
+*.bak
+*.bkp
+# Các thư mục cache
+AppPackages/
+Release/
+Debug/

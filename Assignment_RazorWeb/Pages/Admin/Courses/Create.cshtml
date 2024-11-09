@@ -1,0 +1,65 @@
+﻿@page
+@model Assignment_RazorWeb.Pages.Courses.CreateModel
+@{
+    ViewData["Title"] = "Create Course";
+}
+
+<h2 class="text-center mb-4">Create New Course</h2>
+
+<div class="container">
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Course.Title" class="font-weight-bold"></label>
+            <input asp-for="Course.Title" class="form-control" placeholder="Enter course title" />
+            <span asp-validation-for="Course.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Course.Instructor" class="font-weight-bold"></label>
+            <input asp-for="Course.Instructor" class="form-control" placeholder="Enter instructor name" />
+            <span asp-validation-for="Course.Instructor" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Course.StartDate" class="font-weight-bold"></label>
+            <input asp-for="Course.StartDate" class="form-control" type="date" />
+            <span asp-validation-for="Course.StartDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Course.EndDate" class="font-weight-bold"></label>
+            <input asp-for="Course.EndDate" class="form-control" type="date" />
+            <span asp-validation-for="Course.EndDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Course.Description" class="font-weight-bold"></label>
+            <textarea asp-for="Course.Description" class="form-control" rows="4" placeholder="Enter course description"></textarea>
+            <span asp-validation-for="Course.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="font-weight-bold">Upload Image</label>
+            <input type="file" asp-for="ImageFile" class="form-control-file" />
+            <span asp-validation-for="Course.ImageUrl" class="text-danger"></span>
+
+        </div>
+
+        <!-- Input ẩn cho ImageUrl -->
+        <input type="hidden" asp-for="Course.ImageUrl" value="default-image-url.jpg" />
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary me-3">Create Course</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,48 @@
+﻿@page
+@model Assignment_RazorWeb.Pages.Admin.Enrollments.IndexModel
+@{
+    ViewData["Title"] = "Enrollments";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Enrollment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Course ID</th>
+            <th>Enrollment Date</th>
+            <th>Status</th>
+            <th>Actions</th> 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in Model.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.Id</td>
+                <td>@enrollment.UserId</td>
+                <td>@enrollment.CourseId</td>
+                <td>@enrollment.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+                <td>@enrollment.Status</td>
+                <td>
+                    <input type="hidden" asp-for="CourseId" value="@enrollment.Course.Id" />
+
+                    <a asp-page="Edit" asp-route-id="@enrollment.Id" class="btn btn-warning">Edit</a>
+                    <a asp-page="Delete" asp-route-id="@enrollment.Id" class="btn btn-danger">Delete</a>
+                    <form method="post" asp-page-handler="Approve" asp-route-id="@enrollment.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-success">Approve</button>
+                    </form>
+                    <form method="post" asp-page-handler="Reject" asp-route-id="@enrollment.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

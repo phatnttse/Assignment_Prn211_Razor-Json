@@ -1,0 +1,62 @@
+﻿@page
+@model Assignment_RazorWeb.Pages.MyEnrollmentModel
+@using Assignment_BusinessObjects
+@{
+    ViewData["Title"] = "My Enrollment";
+}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Registered Courses</h2>
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">@Model.SuccessMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+    <div class="row">
+        @if (Model.Enrollments != null && Model.Enrollments.Any()) {
+
+        @foreach (var enrollment in Model.Enrollments)
+        {
+            <div class="col-md-4">
+                <form method="post">
+                    <div class="card mb-4 shadow-sm border-light text-center">
+                        <img src="@enrollment.Course.ImageUrl" class="card-img-top w-100" alt="@enrollment.Course.Title" style="object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title">@enrollment.Course.Title</h5>
+                            <p class="card-text">@enrollment.Course.Description</p>
+                            <p class="card-text" style="color: @(GetStatusColor(enrollment.Status))">
+                                @enrollment.Status
+                            </p>
+                            <p class="card-text"><small class="text-muted">Instructor: @enrollment.Course.Instructor</small></p>
+                            <p class="card-text"><small class="text-muted">Start Date: @enrollment.Course.StartDate.ToShortDateString()</small></p>
+                            <input type="hidden" asp-for="CourseId" value="@enrollment.Course.Id" />
+                            <button type="submit" class="btn btn-danger mt-2">Unenroll</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+}
+        else
+        {
+            <p>No enrollments found.</p>
+        }
+    </div>
+</div>
+
+@functions {
+    private string GetStatusColor(Assignment_BusinessObjects.EnrollmentStatus status)
+    {
+        return status switch
+        {
+            Assignment_BusinessObjects.EnrollmentStatus.Pending => "orange",
+            Assignment_BusinessObjects.EnrollmentStatus.Approved => "green",
+            Assignment_BusinessObjects.EnrollmentStatus.Rejected => "red",
+            Assignment_BusinessObjects.EnrollmentStatus.Completed => "blue",
+            Assignment_BusinessObjects.EnrollmentStatus.Cancelled => "gray",
+            _ => "black"
+        };
+    }
+}

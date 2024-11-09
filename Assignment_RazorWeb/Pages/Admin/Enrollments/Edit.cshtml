@@ -1,0 +1,52 @@
+﻿@page 
+@model Assignment_RazorWeb.Pages.Admin.Enrollments.EditModel
+@{
+    ViewData["Title"] = "Edit Enrollment";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Enrollment Details</h5>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="form-group">
+                <label>User ID</label>
+                <input type="text" class="form-control" value="@Model.Enrollment.UserId" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Course ID</label>
+                <input type="text" class="form-control" value="@Model.Enrollment.CourseId" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Enrollment Date</label>
+                <input type="text" class="form-control" value="@Model.Enrollment.EnrollmentDate.ToString("yyyy-MM-dd")" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <p class="form-control-static">@Model.Enrollment.Status.ToString()</p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" asp-page-handler="Approve" class="btn btn-success">Approve</button>
+                <button type="submit" asp-page-handler="Reject" class="btn btn-danger">Reject</button>
+                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+            {
+                <div class="alert alert-success">@Model.SuccessMessage</div>
+            }
+        </form>
+    </div>
+</div>
